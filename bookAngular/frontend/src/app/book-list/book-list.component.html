@@ -1,0 +1,40 @@
+<div>
+    <h2>Book List</h2>
+    <table>
+        <tr>
+            <th>Book Id</th>
+            <th>Book Name</th>
+            <th>Book PRice</th>
+            <th>Action</th>
+        </tr>
+        <tr *ngFor="let book of books">
+            <td>{{book.bookid}}</td>
+            <td>{{book.bookname}}</td>
+            <td>{{book.bookprice}}</td>
+            <td>
+                <button (click) = "selectedBook = book">Edit</button>
+                <button (click)="deleteBook(book.bookid)">Delete</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <h2>Add new Books</h2>
+    <label for="bookid">Book Id:</label>
+    <input type = "number" id="bookid" [(ngModel)]="newBook.bookid" required ><br>
+    <label for="bookname">Book Name:</label>
+    <input type = "text" id="bookname" [(ngModel)]="newBook.bookname" required ><br>
+    <label for="bookprice">Book Price:</label>
+    <input type = "number" id="bookprice" [(ngModel)]="newBook.bookprice" required ><br>
+    <button (click)="addBook()">Add Book</button>
+</div>
+
+<div *ngIf="selectedBook.bookid">
+    <h2>Edit Book</h2>
+    <label for="editBookName">Book Name:</label>
+    <input type = "text" id="editBookName" [(ngModel)]="selectedBook.bookname" required ><br>
+    <label for="editBookPrice">Book Price:</label>
+    <input type = "number" id="editBookPrice" [(ngModel)]="selectedBook.bookprice" required ><br>
+    <button (click)="updateBook()">Update Book</button>
+</div>
